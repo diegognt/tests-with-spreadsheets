@@ -3,6 +3,7 @@ version: '3.8'
 services:
   app:
     build: .
+    env_file: .env
     volumes:
       - .:/app
     command: python -m unittest discover -s tests

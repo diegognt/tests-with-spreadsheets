@@ -8,8 +8,9 @@ This is a POC project about how to perform tests using data from a Google spread
 
 - [Docker](https://www.docker.com)
 - [Docker compose](https://docs.docker.com/compose/)
+- [A Google Cloud setup](./docs/GOOGLE_CLOUD_SETUP.md)
 
-### 🚀Building
+## 🚀Building
 
 1. Clone the repo
 ```sh
