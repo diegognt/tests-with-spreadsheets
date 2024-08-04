@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 from typing import Any, Dict
 import pandas as pd
 import unittest
@@ -8,23 +9,20 @@ from app.arithmetic import add, subtract, multiply, divide
 
 class ArithmeticTest(unittest.TestCase):
     sheets_client = GoogleSheetsClient()
-    spreadsheet_id: str | None = ""
     data: pd.DataFrame = []
+    spreadsheet_id = os.getenv("SPREADSHEET_ID")
     results: list[Dict[str, Any]] = []
 
     @classmethod
     def setUp(cls) -> None:
-        cls.spreadsheet_id = os.environ.get("SPREADSHEET_ID")
-
         if not cls.spreadsheet_id:
             raise ValueError(
                 "SPREADSHEET_ID is not set in the environment variables."
             )
 
         data_range = "arithmetic_test_cases!A1:D"
-        cls.data = cls.sheets_client.fetch_data(
-            spreadsheet_id=cls.spreadsheet_id, range=data_range
-        )
+        cls.sheets_client.set_spreadsheet_id(cls.spreadsheet_id)
+        cls.data = cls.sheets_client.fetch_data(range=data_range)
 
     def tests_arithmetic(self) -> None:
         for index, row in self.data.iterrows():
@@ -78,7 +76,17 @@ class ArithmeticTest(unittest.TestCase):
     @classmethod
     def tearDown(cls) -> None:
         df = pd.DataFrame(cls.results)
+
         print(df)
+
+        now = datetime.now().strftime("%Y%m%dT%H%M%S")
+        result_sheet_name = f"arithmetic_test_results_{now}"
+
+        cls.sheets_client.add_new_sheet(sheet_name=result_sheet_name)
+        cls.sheets_client.update_sheet(
+            sheet_name=result_sheet_name,
+            data=[df.columns.tolist()] + df.values.tolist(),
+        )
 
 
 if __name__ == "__main__":
