@@ -1,6 +1,6 @@
-# Python data-driven test using Google Spreadsheet
+# Python data-driven test using Google Sheet
 
-This is a POC project about how to perform tests using data from a Google spreadsheet, uses Python's built-in [unittest library](https://docs.python.org/3/library/unittest.html) for testing. This project includes a simple Python functions and a corresponding unit test to ensure its correctness.
+This is a POC project about how to perform unit tests using data from a Google spreadsheet, uses Python's built-in [unittest library](https://docs.python.org/3/library/unittest.html) for testing. This project includes a simple Python functions and a corresponding unit test to ensure its correctness.
 
 ## Setup and running
 
@@ -8,9 +8,9 @@ This is a POC project about how to perform tests using data from a Google spread
 
 - [Docker](https://www.docker.com)
 - [Docker compose](https://docs.docker.com/compose/)
-- [A Google Cloud setup](./docs/GOOGLE_CLOUD_SETUP.md)
+- [Google Cloud setup](./docs/GOOGLE_CLOUD_SETUP.md)
 
-## 🚀Building
+## 🚀Running the tests
 
 1. Clone the repo
 ```sh
@@ -18,19 +18,13 @@ git clone https://github.com/diegognt/tests-with-spreadsheets.git
 cd tests-with-spreadsheets
 ```
 
-2. Build the Docker image using Docker Compose:
+2. Make sure to have the [Google Cloud](./docs/GOOGLE_CLOUD_SETUP.md) already setup
+
+3. Running the tests,
+
+All the tests
 ```sh
-docker-compose up --build
-```
-
-The command will:
-
- - Build the Docker image based on the Dockerfile.
- - Run the unit tests inside the Docker container.
-
-3. When you are done, you can stop and remove the Docker containers with:
-```sh
-docker-compose down
+make all-tests
 ```
 
 ## License

@@ -1,3 +1,31 @@
+"""
+Arithmetic Test Suite.
+
+This module contains the test cases for the arithmetic library.
+
+This Test Suite uses Google Sheets to fetch the test cases and store the results, to
+run the test cases, you need to set the following:
+- Make sure you completed the `../docs/GOOGLE_CLOUD_SETUP.md` guide and have all functional.
+- A Google spreadsheet where test cases will be stored.
+- Set the `SPREADSHEET_ID` in the environment variables, uses the `.env` file for that.
+
+The spreadsheet should have a sheet named `arithmetic_test_cases` with the following columns:
+    - operation: The operation to perform, it can be:
+        - addition
+        - subtraction
+        - multiplication
+        - division
+    - a: The first number.
+    - b: The second number.
+    - expected: The expected result of the operation.
+
+The test cases will be executed and the results will be stored in a new sheet in the same
+spreadsheet with the name `arithmetic_test_results_{timestamp}`.
+
+To run this test suite, you can use the following command:
+    $ make arithmetic-test
+"""
+
 import os
 from datetime import datetime
 from typing import Any, Dict
