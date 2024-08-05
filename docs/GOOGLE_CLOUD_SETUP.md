@@ -42,4 +42,6 @@ Once you have a service account, you can use the gcloud CLI to create a key for 
 
 ```sh
 gcloud iam service-accounts keys create ./secret.json --iam-account <service_account_email>
-``` 
+```
+
+Now we are ready to go.
